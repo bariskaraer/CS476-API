@@ -8,5 +8,6 @@ namespace API.DTOs
         public string userName  { get; set; } 
         [Required]
         public string Password { get; set; }
+        public string UserType {get ;set;}
     }
 }

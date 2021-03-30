@@ -28,7 +28,8 @@ namespace API.Controllers
                 Surname = registerDTO.Surname,
                 Age = registerDTO.Age,
                 Password = registerDTO.Password,
-                Email = registerDTO.Email
+                Email = registerDTO.Email,
+                UserType = registerDTO.UserType
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
