@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -38,6 +39,20 @@ namespace API.Controllers
 
         private async Task<bool> ProductExists(string productName){
             return await _context.Products.AnyAsync(x => x.productName == productName.ToLower());
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        {
+            return await _context.Products.ToListAsync();
+        }
+
+        // api/products/3
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProduct(int id)
+        {
+            return await _context.Products.FindAsync(id);
         }
     }
 }
