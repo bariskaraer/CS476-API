@@ -28,7 +28,6 @@ namespace API.Controllers
                 productName = productDTO.productName.ToLower(),
                 Price = productDTO.Price,
                 Description = productDTO.Description,
-                Comments = productDTO.Comments,
                 Category = productDTO.Category
             };
             _context.Products.Add(product);
