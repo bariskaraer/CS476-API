@@ -26,10 +26,12 @@ namespace API.Controllers
 
             var comment = new Comment{
                 UserID = commentDTO.UserID,
+                UserName = commentDTO.UserName,
                 ProductID = commentDTO.ProductID,
                 CommentDescription = commentDTO.CommentDescription,
                 Rating = commentDTO.Rating,
-                ApprovedStatus = commentDTO.ApprovedStatus
+                ApprovedStatus = commentDTO.ApprovedStatus,
+                AddedDate = commentDTO.AddedDate
             };
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();

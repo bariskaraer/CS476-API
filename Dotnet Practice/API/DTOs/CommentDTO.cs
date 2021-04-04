@@ -10,6 +10,9 @@ namespace API.DTOs
         public string UserID { get; set; }
 
         [Required]
+        public string UserName { get; set; }
+
+        [Required]
         public string ProductID { get; set; }
 
         [Required]
@@ -20,5 +23,8 @@ namespace API.DTOs
 
         [Required]
         public int ApprovedStatus { get; set; }
+
+        [Required]
+        public string AddedDate{get;set;}
     }
 }
