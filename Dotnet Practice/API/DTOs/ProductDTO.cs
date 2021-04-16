@@ -13,6 +13,5 @@ namespace API.DTOs
 
         [Required]
         public string Category {get; set;}
-
     }
 }
