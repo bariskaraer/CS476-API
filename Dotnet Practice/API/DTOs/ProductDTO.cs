@@ -13,6 +13,9 @@ namespace API.DTOs
 
         [Required]
         public string Category {get; set;}
+        
+        [Required]
+        public int userId {get; set;}
 
     }
 }

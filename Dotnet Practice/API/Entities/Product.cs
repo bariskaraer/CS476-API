@@ -8,5 +8,7 @@ namespace API.Entities
         public string Description { get; set; }
         public string Category {get; set;}
         public int Rating {get; set;}
+
+        public int userId {get; set;}
     }
 }

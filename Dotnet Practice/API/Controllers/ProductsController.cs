@@ -23,16 +23,30 @@ namespace API.Controllers
                 return BadRequest("Product Name is taken");
             }
 
+            if(await ProductUserIdCheck(productDTO.userId)){
+                return BadRequest("The user should be a product manager to add a product");
+            }
+
 
             var product = new Product{
                 productName = productDTO.productName.ToLower(),
                 Price = productDTO.Price,
                 Description = productDTO.Description,
-                Category = productDTO.Category
+                Category = productDTO.Category,
+                userId = productDTO.userId
             };
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
             return product;
+        }
+
+        private async Task<bool> ProductUserIdCheck(int userId){
+            var user = await _context.Users.FindAsync(userId);
+            if(user.UserType == "Product Manager"){
+                return false;
+            }else{
+                return true;
+            }
         }
 
 
