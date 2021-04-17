@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\DELL\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\DELL\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Dotnet Practice.-772390398.00" t="ExcludeRecursive" />
+    <e p="D:\repos\c#\476\Dotnet Practice" t="IncludeFlat">
+      <e p="API" t="IncludeRecursive">
+        <e p="API.csproj" t="IncludeRecursive" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AccountController.cs" t="Include" />
+          <e p="BaseApiController.cs" t="Include" />
+          <e p="CategoriesController.cs" t="Include" />
+          <e p="CommentsController.cs" t="Include" />
+          <e p="ProductsController.cs" t="Include" />
+          <e p="UsersController.cs" t="Include" />
+          <e p="WeatherForecastController.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="DataContext.cs" t="Include" />
+          <e p="Migrations" t="Include">
+            <e p="20210320121239_InitialCreate.cs" t="Include" />
+            <e p="20210320121239_InitialCreate.Designer.cs" t="Include" />
+            <e p="20210330140223_EntityUpdate.cs" t="Include" />
+            <e p="20210330140223_EntityUpdate.Designer.cs" t="Include" />
+            <e p="20210330142525_ProductRateUpdate.cs" t="Include" />
+            <e p="20210330142525_ProductRateUpdate.Designer.cs" t="Include" />
+            <e p="20210330153011_UserTypeAdd.cs" t="Include" />
+            <e p="20210330153011_UserTypeAdd.Designer.cs" t="Include" />
+            <e p="20210331101646_CreateComments.cs" t="Include" />
+            <e p="20210331101646_CreateComments.Designer.cs" t="Include" />
+            <e p="20210402195537_CategoriesTable.cs" t="Include" />
+            <e p="20210402195537_CategoriesTable.Designer.cs" t="Include" />
+            <e p="20210402201709_CategoriesTableChange.cs" t="Include" />
+            <e p="20210402201709_CategoriesTableChange.Designer.cs" t="Include" />
+            <e p="DataContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="DTOs" t="Include">
+          <e p="CategoryDTO.cs" t="Include" />
+          <e p="CommentDTO.cs" t="Include" />
+          <e p="LoginDTO.cs" t="Include" />
+          <e p="ProductDTO.cs" t="Include" />
+          <e p="RegisterDTO.cs" t="Include" />
+        </e>
+        <e p="Entities" t="Include">
+          <e p="AppUser.cs" t="Include" />
+          <e p="Category.cs" t="Include" />
+          <e p="Comment.cs" t="Include" />
+          <e p="Product.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="practice.db" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="WeatherForecast.cs" t="Include" />
+      </e>
+      <e p="Dotnet Practice.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
