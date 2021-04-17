@@ -67,5 +67,40 @@ namespace API.Controllers
         {
             return await _context.Products.FindAsync(id);
         }
+         
+        //http://localhost:5000/api/products/update/1
+        [HttpPost("update/{id}")]
+        public async Task<ActionResult<Product>> Update(int id, ProductDTO productDTO){
+            if(!(await ProductExists(productDTO.Id))){
+                return BadRequest("Product is not exist");
+            }
+
+            var product = await _context.Products.FindAsync(id);
+
+            product.productName = productDTO.productName.ToLower();
+            product.Price = productDTO.Price;
+            product.Description = productDTO.Description;
+            product.Category = productDTO.Category;
+            product.user = productDTO.userId;
+            await _context.SaveChangesAsync();
+            return product;
+        }
+        private async Task<bool> ProductExists(int productId){
+            return await _context.Products.AnyAsync(x => x.Id == productId);
+        }
+
+        //http://localhost:5000/api/products/delete/1
+        [HttpPost("delete/{id}")]
+            public async Task<ActionResult<bool>> Delete(int id){
+            if(!(await ProductExists(id))){
+                return BadRequest("Product is not exist");
+            }
+
+            Product product = new Product { Id = id };
+            _context.Products.Attach(product);
+            _context.Entry(product).State = EntityState.Deleted; 
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
