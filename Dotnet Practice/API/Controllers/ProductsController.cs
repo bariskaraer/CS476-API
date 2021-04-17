@@ -81,7 +81,7 @@ namespace API.Controllers
             product.Price = productDTO.Price;
             product.Description = productDTO.Description;
             product.Category = productDTO.Category;
-            product.user = productDTO.userId;
+            product.userId = productDTO.userId;
             await _context.SaveChangesAsync();
             return product;
         }
