@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -58,14 +59,27 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
+
             return await _context.Products.ToListAsync();
+
+           
         }
 
         // api/products/3
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _context.Products.FindAsync(id);
+            
+            var totalRate= _context.Comments.Where( x => x.ProductID == id.ToString()).Select(x=> x.Rating).Sum();
+            var totalComment= _context.Comments.Where(x => x.ProductID == id.ToString()).Count();
+            var product = await _context.Products.FindAsync(id);
+            double calculation = ((double)totalRate)/(double)totalComment;
+            if(totalComment==0){
+                calculation = 0;
+            }
+            product.Rating=calculation;
+            await _context.SaveChangesAsync();
+            return product;
         }
          
         //http://localhost:5000/api/products/update/1
