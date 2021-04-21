@@ -89,6 +89,10 @@ namespace API.Controllers
                 return BadRequest("Product is not exist");
             }
 
+            if(await ProductUserIdCheck(productDTO.userId)){
+                return BadRequest("The user should be a product manager to add a product");
+            }
+
             var product = await _context.Products.FindAsync(id);
 
             product.productName = productDTO.productName.ToLower();
@@ -105,9 +109,13 @@ namespace API.Controllers
 
         //http://localhost:5000/api/products/delete/1
         [HttpPost("delete/{id}")]
-            public async Task<ActionResult<bool>> Delete(int id){
+            public async Task<ActionResult<bool>> Delete(int id,ProductDeleteDTO productDeleteDTO){
             if(!(await ProductExists(id))){
-                return BadRequest("Product is not exist");
+                return BadRequest("Product does not exist");
+            }
+
+            if(await ProductUserIdCheck(productDeleteDTO.Id)){
+                return BadRequest("The user should be a product manager to delete a product");
             }
 
             Product product = new Product { Id = id };
