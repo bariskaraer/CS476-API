@@ -1,3 +1,5 @@
+using System.IO;
+using System.Net.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,20 +8,28 @@ using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Hosting;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
         private readonly DataContext _context;
-        public ProductsController(DataContext context)
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+        public ProductsController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
 
         [HttpPost("add")]
-        public async Task<ActionResult<Product>> Add(ProductDTO productDTO){
+        public async Task<ActionResult<Product>> Add([FromBody] ProductDTO productDTO){
             if(await ProductExists(productDTO.productName)){
                 return BadRequest("Product Name is taken");
             }
@@ -36,9 +46,25 @@ namespace API.Controllers
                 Category = productDTO.Category,
                 userId = productDTO.userId
             };
+            product.imageName = await SaveImage(productDTO.productImage);
+
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
             return product;
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile){
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName+DateTime.Now.ToString("yymmssfff")+Path.GetFileNameWithoutExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using (var fileStream= new FileStream(imagePath, FileMode.Create))
+            {
+               await imageFile.CopyToAsync(fileStream);
+
+            }
+            return imageName;
+
         }
 
         private async Task<bool> ProductUserIdCheck(int userId){

@@ -55,7 +55,8 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors("AllowEverything");
+            app.UseCors(options=> options.WithOrigins( "AllowEverything").AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseAuthorization();
 

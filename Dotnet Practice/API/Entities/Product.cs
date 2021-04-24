@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace API.Entities
 {
     public class Product
@@ -10,5 +16,8 @@ namespace API.Entities
         public double Rating {get; set;}
 
         public int userId {get; set;}
+        public string productImageName {get; set;}
+        public string imageName {get; set;}     
+
     }
 }
