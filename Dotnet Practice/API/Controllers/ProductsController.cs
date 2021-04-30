@@ -98,7 +98,7 @@ namespace API.Controllers
         [HttpPost("update/{id}")]
         public async Task<ActionResult<Product>> Update(int id, ProductDTO productDTO){
             if(!(await ProductExists(productDTO.Id))){
-                return BadRequest("Product is not exist");
+                return BadRequest("Product does not exist");
             }
 
             if(await ProductUserIdCheck(productDTO.userId)){
