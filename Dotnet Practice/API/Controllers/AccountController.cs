@@ -53,5 +53,30 @@ namespace API.Controllers
         }
 
 
+
+        //http://localhost:5000/api/products/update/1
+        [HttpPost("update/{id}")]
+        public async Task<ActionResult<AppUser>> Update(int id, RegisterDTO registerDTO){
+            if(!(await UserExists(registerDTO.Id))){
+                return BadRequest("User does not exist");
+            }
+
+            var user = await _context.Users.FindAsync(id);
+
+            user.userName = registerDTO.userName;
+            user.Name = registerDTO.Name;
+            user.Surname = registerDTO.Surname;
+            user.Age = registerDTO.Age;
+            user.Password = registerDTO.Password;
+            user.Email = registerDTO.Email;
+            user.UserType = registerDTO.UserType;
+
+            await _context.SaveChangesAsync();
+            return user;
+        }
+        private async Task<bool> UserExists(int id){
+            return await _context.Users.AnyAsync(x => x.Id == id);
+        }
+
     }
 }
