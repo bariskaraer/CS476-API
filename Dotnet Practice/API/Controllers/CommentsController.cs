@@ -53,6 +53,32 @@ namespace API.Controllers
         {
             return await _context.Comments.Where(x => x.ProductID == id).ToListAsync();
         }   
-        
+
+        //http://localhost:5000/api/comments/update/12/statusId/1
+        [HttpPost("update/{commentId}/status/{approvedStatus}")]
+        public async Task<ActionResult<Comment>> Update(int commentId, int approvedStatus){
+            if(!(await CommentExistsById(commentId))){
+                return BadRequest("Comment does not exist.");
+            }
+            
+            var comment= await _context.Comments.FirstOrDefaultAsync(x => x.Id == commentId);
+
+            comment.ApprovedStatus = approvedStatus;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        private async Task<bool> CommentExistsById(int id){
+            return await _context.Comments.AnyAsync(x => x.Id == id);
+        }
+
+        //http://localhost:5000/api/comments/user/16
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<Comment>>> GetCommentsRelatedToUserId(int userId)
+        {
+            var productIds = await _context.Products.Where(x => x.userId == userId).Select(x=> x.Id.ToString()).ToListAsync();
+            var comments = await _context.Comments.Where(x => productIds.Contains(x.ProductID)).ToListAsync();
+            return comments;
+        }   
     }
 }

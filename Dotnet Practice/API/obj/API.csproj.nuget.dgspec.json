@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\API.csproj": {}
+    "D:\\repos\\c#\\476\\Dotnet Practice\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\API.csproj": {
+    "D:\\repos\\c#\\476\\Dotnet Practice\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\API.csproj",
+        "projectUniqueName": "D:\\repos\\c#\\476\\Dotnet Practice\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\baris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\obj\\",
+        "projectPath": "D:\\repos\\c#\\476\\Dotnet Practice\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\c#\\476\\Dotnet Practice\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\baris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Program Files\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
