@@ -49,6 +49,15 @@ namespace API.Controllers
                 price = salesDTO.price,
                 amount = salesDTO.amount
             };
+
+            var product = await _context.Products.FindAsync(salesDTO.productId);
+            if(salesDTO.amount <= product.quantity){
+                var new_amount = product.quantity - salesDTO.amount;
+                product.quantity = new_amount;
+            }else{
+                return BadRequest("The input amount cannot be larger than the quantity of product");
+            }
+
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
             return sale;

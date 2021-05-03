@@ -34,7 +34,9 @@ namespace API.Controllers
                 Price = productDTO.Price,
                 Description = productDTO.Description,
                 Category = productDTO.Category,
-                userId = productDTO.userId
+                userId = productDTO.userId,
+                quantity = productDTO.quantity,
+                brand = productDTO.brand
             };
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -112,6 +114,9 @@ namespace API.Controllers
             product.Description = productDTO.Description;
             product.Category = productDTO.Category;
             product.userId = productDTO.userId;
+            product.quantity = productDTO.quantity;
+            product.brand = productDTO.brand;
+            
             await _context.SaveChangesAsync();
             return product;
         }

@@ -17,5 +17,8 @@ namespace API.DTOs
         [Required]
         public int userId {get; set;}
 
+        public int quantity {get; set;}
+        public string brand {get; set;}
+
     }
 }
