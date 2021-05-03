@@ -53,8 +53,8 @@ namespace API.Controllers
 
 
         //http://localhost:5000/api/carts/delete
-        [HttpPost("delete/{id}")]
-        public async Task<ActionResult<Carts>> Delete(int id,CartsDTO cartDTO){
+        [HttpPost("delete")]
+        public async Task<ActionResult<Carts>> Delete(CartsDTO cartDTO){
 
         if(!(await UserExists(cartDTO.userId))){
             return BadRequest("User does not exist");
@@ -65,9 +65,11 @@ namespace API.Controllers
         }
 
 
-        Carts cart = new Carts { Id = id };
-        _context.Carts.Attach(cart);
-        _context.Entry(cart).State = EntityState.Deleted; 
+        var new_id = _context.Carts.Where(x => x.userId == cartDTO.userId && x.product == cartDTO.product).First();
+        //Carts cart = new Carts { Id = new_id.Id, userId=new_id.userId,product = new_id.product };
+        //_context.Carts.Attach(cart);
+        //_context.Entry(cart).State = EntityState.Deleted; 
+        _context.Carts.Remove(new_id);
         await _context.SaveChangesAsync();
         return Ok();
         }
