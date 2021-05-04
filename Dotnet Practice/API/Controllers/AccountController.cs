@@ -70,7 +70,6 @@ namespace API.Controllers
             user.Password = registerDTO.Password;
             user.Email = registerDTO.Email;
             user.UserType = registerDTO.UserType;
-            user.linking_id = registerDTO.linking_id;
 
             await _context.SaveChangesAsync();
             return user;
