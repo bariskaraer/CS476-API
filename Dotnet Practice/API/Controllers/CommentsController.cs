@@ -54,7 +54,7 @@ namespace API.Controllers
             return await _context.Comments.Where(x => x.ProductID == id).ToListAsync();
         }   
 
-        //http://localhost:5000/api/comments/update/12/statusId/1
+        //http://localhost:5000/api/comments/update/12/status/1
         [HttpPost("update/{commentId}/status/{approvedStatus}")]
         public async Task<ActionResult<Comment>> Update(int commentId, int approvedStatus){
             if(!(await CommentExistsById(commentId))){

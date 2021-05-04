@@ -141,5 +141,12 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return true;
         }
+
+
+        [HttpGet("getByPM/{id}")]
+        public IQueryable<Product> GetByProductManager(int id)
+        {
+            return  _context.Products.Where( x => x.userId == id);
+        }
     }
 }

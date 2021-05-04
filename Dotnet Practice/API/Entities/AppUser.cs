@@ -14,5 +14,12 @@ namespace API.Entities
         public string Email {get ;set;}
 
         public string UserType {get ;set;}
+
+        public int linking_id {get ;set;}
     }
 }
+
+
+
+//salesManager has to select a productmanager when registering
+//when registering for a product manager the user dont have to choose a sales manager (dont have to implement anything for this)

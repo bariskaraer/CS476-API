@@ -29,7 +29,8 @@ namespace API.Controllers
                 Age = registerDTO.Age,
                 Password = registerDTO.Password,
                 Email = registerDTO.Email,
-                UserType = registerDTO.UserType
+                UserType = registerDTO.UserType,
+                linking_id = registerDTO.linking_id
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -70,6 +71,7 @@ namespace API.Controllers
             user.Password = registerDTO.Password;
             user.Email = registerDTO.Email;
             user.UserType = registerDTO.UserType;
+            user.linking_id = registerDTO.linking_id;
 
             await _context.SaveChangesAsync();
             return user;
