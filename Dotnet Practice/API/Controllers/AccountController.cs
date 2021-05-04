@@ -55,7 +55,6 @@ namespace API.Controllers
 
 
 
-        //http://localhost:5000/api/products/update/1
         [HttpPost("update/{id}")]
         public async Task<ActionResult<AppUser>> Update(int id, RegisterDTO registerDTO){
             if(!(await UserExists(registerDTO.Id))){
