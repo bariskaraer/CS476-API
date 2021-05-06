@@ -148,5 +148,17 @@ namespace API.Controllers
         {
             return  _context.Products.Where( x => x.userId == id);
         }
+
+
+
+        [HttpGet("getLinkedProducts/{id}")]
+        public ActionResult<IQueryable<IEnumerable<Product>>> GetLinkedProductManagerProducts(int id){
+            var linked_id = _context.Users.Find(id).linking_id;
+            if(linked_id == 0){
+                return BadRequest("No Existing linked user, this user may be a customer or a product manager, please call this method with a sales manager id");
+            }
+            var linkedIdOfSalesManager = _context.Users.Find(linked_id);
+            return Ok(_context.Products.Where( x => x.userId == linkedIdOfSalesManager.Id));
+        }
     }
 }
