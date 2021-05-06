@@ -63,8 +63,8 @@ namespace API.Controllers
         {
             foreach(Product product_ in await _context.Products.ToListAsync()){
                 var id = product_.Id;
-                var totalRate= _context.Comments.Where( x => x.ProductID == id.ToString() && x.ApprovedStatus == 1).Select(x=> x.Rating).Sum();
-                var totalComment= _context.Comments.Where(x => x.ProductID == id.ToString()&& x.ApprovedStatus == 1).Count();
+                var totalRate= _context.Comments.Where( x => x.ProductID == id.ToString() && x.ApprovedStatus == 2).Select(x=> x.Rating).Sum();
+                var totalComment= _context.Comments.Where(x => x.ProductID == id.ToString()&& x.ApprovedStatus == 2).Count();
                 var product = await _context.Products.FindAsync(id);
                 double calculation = ((double)totalRate)/(double)totalComment;
                 if(totalComment==0){
@@ -84,8 +84,8 @@ namespace API.Controllers
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             
-            var totalRate= _context.Comments.Where( x => x.ProductID == id.ToString() && x.ApprovedStatus == 1).Select(x=> x.Rating).Sum();
-            var totalComment= _context.Comments.Where(x => x.ProductID == id.ToString() && x.ApprovedStatus == 1).Count();
+            var totalRate= _context.Comments.Where( x => x.ProductID == id.ToString() && x.ApprovedStatus == 2).Select(x=> x.Rating).Sum();
+            var totalComment= _context.Comments.Where(x => x.ProductID == id.ToString() && x.ApprovedStatus == 2).Count();
             var product = await _context.Products.FindAsync(id);
             double calculation = ((double)totalRate)/(double)totalComment;
             if(totalComment==0){
