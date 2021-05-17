@@ -36,7 +36,8 @@ namespace API.Controllers
                 Category = productDTO.Category,
                 userId = productDTO.userId,
                 quantity = productDTO.quantity,
-                brand = productDTO.brand
+                brand = productDTO.brand,
+                picture = productDTO.picture
             };
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -116,6 +117,7 @@ namespace API.Controllers
             product.userId = productDTO.userId;
             product.quantity = productDTO.quantity;
             product.brand = productDTO.brand;
+            product.picture = productDTO.picture;
             
             await _context.SaveChangesAsync();
             return product;

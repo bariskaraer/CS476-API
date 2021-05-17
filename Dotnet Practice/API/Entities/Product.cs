@@ -13,5 +13,7 @@ namespace API.Entities
 
         public int quantity {get; set;}
         public string brand {get; set;}
+
+        public string picture {get; set;}
     }
 }
