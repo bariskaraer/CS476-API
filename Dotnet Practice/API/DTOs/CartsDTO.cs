@@ -10,5 +10,6 @@ namespace API.DTOs
         public int userId { get; set; }
         [Required]
         public int product { get; set; }
+        public int quantity { get; set; }
     }
 }

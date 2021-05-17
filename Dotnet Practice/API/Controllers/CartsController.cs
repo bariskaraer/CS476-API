@@ -41,7 +41,8 @@ namespace API.Controllers
             
             var cart = new Carts{
                 userId = cartDTO.userId,
-                product = cartDTO.product
+                product = cartDTO.product,
+                quantity = cartDTO.quantity
             };
             _context.Carts.Add(cart);
             await _context.SaveChangesAsync();
@@ -97,4 +98,3 @@ namespace API.Controllers
         }
     }
 }
-// add quantity for carts
