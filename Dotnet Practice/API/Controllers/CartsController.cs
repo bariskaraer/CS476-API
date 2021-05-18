@@ -29,6 +29,18 @@ namespace API.Controllers
             return await _context.Carts.FindAsync(id);
         }
 
+        // http://localhost:5000/api/carts/update/9/13/400
+        // update/{productID}/{userID}/{quantity}
+        [HttpPost("update/{productID}/{userID}/{quantity}")]
+        public async Task<ActionResult<Carts>> Update(int productID, int userID,int quantity){
+            
+            var cart= await _context.Carts.FirstOrDefaultAsync(x => x.product == productID && x.userId == userID);
+
+            cart.quantity = quantity;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
         [HttpPost("add")]
         public async Task<ActionResult<Carts>> Add(CartsDTO cartDTO){
             if(!(await UserExists(cartDTO.userId))){
