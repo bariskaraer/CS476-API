@@ -15,5 +15,6 @@ namespace API.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Sales> Sales { get; set; }
         public DbSet<Carts> Carts { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
     }
 }
