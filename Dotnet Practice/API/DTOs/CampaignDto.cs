@@ -8,5 +8,7 @@ namespace API.DTOs
         public int startDate { get; set; }
         public int endDate { get; set; }
         public string description { get; set; }
+        public int percentage {get;set;}
+
     }
 }

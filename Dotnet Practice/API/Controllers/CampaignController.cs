@@ -29,7 +29,8 @@ namespace API.Controllers
                 productId = campaignDto.productId,
                 startDate = campaignDto.startDate,
                 endDate = campaignDto.endDate,
-                description = campaignDto.description
+                description = campaignDto.description,
+                percentage = campaignDto.percentage
             };
             _context.Campaigns.Add(campaign);
             await _context.SaveChangesAsync();
