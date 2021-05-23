@@ -166,3 +166,5 @@ D:\repos\c#\476\Dotnet Practice\API\obj\Debug\net5.0\scopedcss\bundle\API.styles
 D:\repos\c#\476\Dotnet Practice\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
 D:\repos\c#\476\Dotnet Practice\API\obj\Debug\net5.0\API.csproj.CopyComplete
 D:\repos\c#\476\Dotnet Practice\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\baris\OneDrive\Documents\GitHub\CS476-API\Dotnet Practice\API\bin\Debug\net5.0\FluentEmail.Core.dll
+C:\Users\baris\OneDrive\Documents\GitHub\CS476-API\Dotnet Practice\API\bin\Debug\net5.0\FluentEmail.Smtp.dll

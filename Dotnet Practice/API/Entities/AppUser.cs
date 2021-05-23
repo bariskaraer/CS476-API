@@ -16,6 +16,8 @@ namespace API.Entities
         public string UserType {get ;set;}
 
         public int linking_id {get ;set;}
+
+        public string MailCode{get;set;}
     }
 }
 

@@ -4,16 +4,50 @@ using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using FluentEmail.Core;
+using FluentEmail.Smtp;
+using System.Net.Mail;
+using System.Text;
+using System;
 
 namespace API.Controllers
 {
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
+        // Instantiate random number generator.  
+        private readonly Random _random = new Random();  
         public AccountController(DataContext context)
         {
             _context = context;
         }
+
+        // Generates a random number within a range.      
+        public int RandomNumber(int min, int max)  
+        {  
+        return _random.Next(min, max);  
+        }  
+        public string RandomString(int size, bool lowerCase = false)  
+        {  
+        var builder = new StringBuilder(size);  
+        
+        // Unicode/ASCII Letters are divided into two blocks
+        // (Letters 65–90 / 97–122):
+        // The first group containing the uppercase letters and
+        // the second group containing the lowercase.  
+
+        // char is a single Unicode character  
+        char offset = lowerCase ? 'a' : 'A';  
+        const int lettersOffset = 26; // A...Z or a..z: length=26  
+        
+        for (var i = 0; i < size; i++)  
+        {  
+        var @char = (char)_random.Next(offset, offset + lettersOffset);  
+        builder.Append(@char);  
+        }  
+        
+        return lowerCase ? builder.ToString().ToLower() : builder.ToString();  
+        }  
 
         [HttpPost("register")]
         public async Task<ActionResult<AppUser>> Register(RegisterDTO registerDTO){
@@ -36,6 +70,9 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return user;
         }
+        
+  
+        
 
 
         [HttpPost("login")]
@@ -45,7 +82,31 @@ namespace API.Controllers
                 return Unauthorized("Invalid Username");
             }
             if(loginDTO.Password != user.Password) return Unauthorized("Wrong password");
+
+            // Send Email
+            var sender =new SmtpSender(() => new SmtpClient("localhost"){
+                EnableSsl = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Port = 25
+                //DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
+                //PickupDirectoryLocation = @"C:\Demos"
+            });
+            string rand_string = RandomString(8);
+            var body_email = "This is your verification number " + rand_string + " . Please paste this text to the ecommerce website. ";
+
+            Email.DefaultSender = sender;
+            var email = await Email
+                .From("baris.karaer@ozu.edu.tr")
+                .To(user.Email,user.Name)
+                .Subject("Your Login Code !")
+                .Body(body_email)
+                .SendAsync();
+
+            user.MailCode = rand_string;
+            await _context.SaveChangesAsync();
             return user;
+
+            
         }
 
 

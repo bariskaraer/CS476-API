@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "roAQKhlaPFLJAF1Y/SMdF9DhJFZyXc/+zpTAHtC5Rtcsuut3+RVcNvmeW8sOKlQER1std6tsDXtvY76M8Trtrg==",
+  "dgSpecHash": "P7rwDXXM04a9hJZw+sgXLr/7EO0gwj71ZWrGAJemvNeY9O4ccki9qWkxFqdaQYJDNjACPxzOiJrVVzRIWgh0ow==",
   "success": true,
   "projectFilePath": "C:\\Users\\baris\\OneDrive\\Documents\\GitHub\\CS476-API\\Dotnet Practice\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\baris\\.nuget\\packages\\fluentemail.core\\3.0.0\\fluentemail.core.3.0.0.nupkg.sha512",
+    "C:\\Users\\baris\\.nuget\\packages\\fluentemail.smtp\\3.0.0\\fluentemail.smtp.3.0.0.nupkg.sha512",
     "C:\\Users\\baris\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\baris\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\baris\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.1\\microsoft.data.sqlite.core.5.0.1.nupkg.sha512",

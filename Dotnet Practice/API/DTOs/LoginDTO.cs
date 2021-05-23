@@ -9,6 +9,7 @@ namespace API.DTOs
         [Required]
         public string Password { get; set; }
         public string UserType {get ;set;}
-        public int linking_id {get ;set;}   
+        public int linking_id {get ;set;}  
+        public string MailCode{get;set;} 
     }
 }
