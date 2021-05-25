@@ -18,6 +18,8 @@ namespace API.Entities
         public int linking_id {get ;set;}
 
         public string MailCode{get;set;}
+
+        public int Balance{get;set;}
     }
 }
 

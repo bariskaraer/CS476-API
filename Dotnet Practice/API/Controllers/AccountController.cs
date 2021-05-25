@@ -64,7 +64,8 @@ namespace API.Controllers
                 Password = registerDTO.Password,
                 Email = registerDTO.Email,
                 UserType = registerDTO.UserType,
-                linking_id = registerDTO.linking_id
+                linking_id = registerDTO.linking_id,
+                Balance = 100
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
