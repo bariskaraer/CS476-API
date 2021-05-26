@@ -21,7 +21,7 @@ namespace API.Controllers
         }
 
         [HttpPost("pay")]
-        public async Task<ActionResult<AppUser>> Update(FinanceDto financeDTO){
+        public async Task<ActionResult<AppUser>> Payment(FinanceDto financeDTO){
             if(!(await UserExists(financeDTO.customerID))){
                 return BadRequest("User does not exist");
             }
@@ -30,6 +30,19 @@ namespace API.Controllers
             if(newBalance < 0){
                 return BadRequest("The fee is too much. There is not enough balance on this users wallet.");
             }
+            user.Balance = newBalance;
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+
+        [HttpPost("addMoney")]
+        public async Task<ActionResult<AppUser>> AddMoney(FinanceDto financeDTO){
+            if(!(await UserExists(financeDTO.customerID))){
+                return BadRequest("User does not exist");
+            }
+            var user = await _context.Users.FindAsync(financeDTO.customerID);
+            var newBalance = user.Balance + financeDTO.fee;
             user.Balance = newBalance;
             await _context.SaveChangesAsync();
             return user;
