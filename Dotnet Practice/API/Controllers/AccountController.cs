@@ -83,7 +83,7 @@ namespace API.Controllers
                 return Unauthorized("Invalid Username");
             }
             if(loginDTO.Password != user.Password) return Unauthorized("Wrong password");
-
+            /*
             // Send Email
             var sender =new SmtpSender(() => new SmtpClient("localhost"){
                 EnableSsl = false,
@@ -105,6 +105,7 @@ namespace API.Controllers
 
             user.MailCode = rand_string;
             await _context.SaveChangesAsync();
+            */
             return user;
 
             
