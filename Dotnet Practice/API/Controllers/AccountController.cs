@@ -57,7 +57,7 @@ namespace API.Controllers
 
 
             var user = new AppUser{
-                userName = registerDTO.userName.ToLower(),
+                userName = registerDTO.userName,
                 Name = registerDTO.Name,
                 Surname = registerDTO.Surname,
                 Age = registerDTO.Age,
