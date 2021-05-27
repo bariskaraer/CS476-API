@@ -9,6 +9,7 @@ using FluentEmail.Smtp;
 using System.Net.Mail;
 using System.Text;
 using System;
+using System.Net;
 
 namespace API.Controllers
 {
@@ -83,12 +84,12 @@ namespace API.Controllers
                 return Unauthorized("Invalid Username");
             }
             if(loginDTO.Password != user.Password) return Unauthorized("Wrong password");
-            /*
+            
             // Send Email
-            var sender =new SmtpSender(() => new SmtpClient("localhost"){
-                EnableSsl = false,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Port = 25
+            var sender =new SmtpSender(() => new SmtpClient("email-smtp.us-east-2.amazonaws.com", 587){
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,    
+                Credentials = new NetworkCredential("AKIA3OZN4OEO7JODVWHV", "BJaigG9XlMHs0RhdXpE7OAoeRocssOts4aHp1Xh9kXoN") 
                 //DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
                 //PickupDirectoryLocation = @"C:\Demos"
             });
@@ -105,10 +106,23 @@ namespace API.Controllers
 
             user.MailCode = rand_string;
             await _context.SaveChangesAsync();
-            */
+            
             return user;
 
             
+        }
+
+
+        [HttpPost("twofactor")]
+        public async Task<ActionResult<bool>> TwoFactor(TwoFactorDTO TwoFactorDTO){
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == TwoFactorDTO.userId);
+            if(user == null){
+                return Unauthorized("Invalid Username");
+            }
+            if(TwoFactorDTO.MailCode != user.MailCode){
+                return false;
+            }
+            return true;
         }
 
 
