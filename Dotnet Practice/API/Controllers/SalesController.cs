@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,7 +84,28 @@ namespace API.Controllers
             return  _context.Sales.Where( x => x.userId == id);
         }
 
-
+        [HttpGet("getSales/{id}")]
+        public ActionResult<IQueryable<Sales>> GetLinkedSales(int id){
+            var linked_id = _context.Users.Find(id).linking_id;
+            if(linked_id == 0){
+                return BadRequest("No Existing linked user, this user may be a customer or a product manager, please call this method with a sales manager id");
+            }
+            var linkedIdOfSalesManager = _context.Users.Find(linked_id);
+            var string_link = linkedIdOfSalesManager.Id;
+            IEnumerable<Sales> sales = _context.Sales;
+            IEnumerable<Product> products = _context.Products;
+            var result = new List<Sales>();
+            foreach (var sale in sales)
+            {
+                foreach (var product in products)
+                {
+                    if(product.userId == string_link && sale.productId == product.Id.ToString()){
+                        result.Add(sale);
+                    }
+                }
+            }
+            return Ok(result);
+        }
 
         
     }
