@@ -59,6 +59,15 @@ namespace API.Controllers
                 return BadRequest("The input amount cannot be larger than the quantity of product");
             }
 
+            var total_price = salesDTO.amount * salesDTO.price;
+            var prod_id = salesDTO.productId;
+
+            var producttt = await _context.Products.SingleOrDefaultAsync(x => x.Id == prod_id);
+            var user_id = producttt.userId;
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == user_id);
+            user.Balance = user.Balance + total_price;
+            
+
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
             return sale;
