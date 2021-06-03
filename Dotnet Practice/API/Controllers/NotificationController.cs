@@ -41,7 +41,7 @@ namespace API.Controllers
 
 
         [HttpPost("add")]
-        public async Task<ActionResult<Product>> Add(NotificationDto notDto){
+        public async Task<ActionResult<Notification>> Add(NotificationDto notDto){
             if(await NotificationExists(notDto.NotificationId, notDto.UserId)){
                 return BadRequest("Cant post more than 1 notification for user and notification id");
             }
@@ -55,6 +55,14 @@ namespace API.Controllers
             _context.Notifications.Add(notification);
             await _context.SaveChangesAsync();
             return Ok(notification);
+        }
+
+        [HttpPost("change")]
+        public async Task<ActionResult<Notification>> ChangeStatus(NotificationDto notDto){
+            var notif = await _context.Notifications.FirstOrDefaultAsync(x => x.NotificationId == notDto.NotificationId && x.UserId == notDto.UserId);
+            notif.Seen = notDto.Seen;
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
         private async Task<bool> NotificationExists(int NotificationId, int UserId){
