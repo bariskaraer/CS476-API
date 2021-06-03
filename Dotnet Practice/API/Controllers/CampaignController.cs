@@ -34,6 +34,18 @@ namespace API.Controllers
             };
             _context.Campaigns.Add(campaign);
             await _context.SaveChangesAsync();
+
+            // campaign.Id
+            var all_users = _context.Users.Where(x => x.UserType == "Customer");
+            foreach(var user in all_users){
+                var notification = new Notification{
+                NotificationId = campaign.Id,
+                UserId = user.Id,
+                Seen = 0
+            };
+                _context.Notifications.Add(notification);
+            }
+            await _context.SaveChangesAsync();
             return Ok(campaign);
         }
 
